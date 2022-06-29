@@ -29,7 +29,7 @@ nohup python -u main_H0_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FING
 ```
 
 ## Run both
-Run ```bash runner.sh```
+Edit and Run ```bash runner.sh```
 
 ## NOTE:
 You need to edit:
