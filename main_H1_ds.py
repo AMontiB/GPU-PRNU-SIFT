@@ -291,6 +291,7 @@ FLAGS = tf.compat.v1.flags.FLAGS
 # dataset
 tf.compat.v1.flags.DEFINE_string('videos', '../../../home/testImages/VISION/video_stabilization/', 'path to videos')
 tf.compat.v1.flags.DEFINE_string('fingerprint', 'fingerprints/*', 'path to fingerprint')
+tf.compat.v1.flags.DEFINE_string('output', 'OUTPUT/', 'path to output')
 tf.compat.v1.flags.DEFINE_string('gpu_dev', '/gpu:0', 'gpu device')
 
 physical_devices = tf.config.list_physical_devices('GPU')
@@ -370,7 +371,7 @@ with tf.device(FLAGS.gpu_dev):
         videos_path = glob.glob(test_set_device)
         for video_path in videos_path:
             print(video_path)
-            out_file = 'OUTPUT_H1_ds/' + video_path[len(test_set):-4] + '_PCE.mat'
+            out_file = FLAGS.output + '/' + video_path[len(test_set):-4] + '_PCE.mat'
             if not os.path.exists(out_file):
                 with exiftool.ExifTool() as et:
                     orientation = et.get_metadata(video_path)["Composite:Rotation"]
@@ -555,9 +556,11 @@ with tf.device(FLAGS.gpu_dev):
                                 break
                         else:
                             break
+                    if not os.path.exists(FLAGS.output):
+                        os.mkdir(FLAGS.output)
                     mdir = {'pce': np.asarray(pce_array)}
-                    out_name1 = 'OUTPUT_H1_ds/' + video_path[len(test_set):-4] + '_PCE.mat'
+                    out_name1 = FLAGS.output + '/' + video_path[len(test_set):-4] + '_PCE.mat'
                     savemat(out_name1, mdir)
                     mdir = {'time': np.asarray(time_array)}
-                    out_name2 = 'OUTPUT_H1_ds/' + video_path[len(test_set):-4] + '_time.mat'
+                    out_name2 = FLAGS.output + '/' + video_path[len(test_set):-4] + '_time.mat'
                     savemat(out_name2, mdir)
