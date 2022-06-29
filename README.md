@@ -7,7 +7,7 @@ This is the official code implementation of the ICIP 2022 paper ["GPU-accelerate
 - Download the python libraries of [Camera-fingerprint](https://dde.binghamton.edu/download/camera_fingerprint/) ;
  - if [Camera-fingerprint](https://dde.binghamton.edu/download/camera_fingerprint/) is not already, reorganize the folders such that ```PRNU/CameraFingerprint``` ;
  - Download the Reference Camera Fingerprints [here](https://drive.google.com/drive/folders/1q6FpTvP5FYsgaQf5kbC3vjuT6s8jbmxs?usp=sharing);
- - at least 9G of GPU.
+ - at least 9G GPU.
 ## Set up Virtual-Env
 ```
 conda env create -f environment.yml
