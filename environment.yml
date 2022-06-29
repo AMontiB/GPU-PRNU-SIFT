@@ -1,4 +1,4 @@
-name: GPU_fast
+name: GPU_PRNU_SIFT
 channels:
   - anaconda
   - conda-forge
