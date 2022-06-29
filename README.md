@@ -20,12 +20,12 @@ Download Vision dataset [here](https://lesc.dinfo.unifi.it/en/datasets).
 
 ## Test a match (H1) hypothesis case
 ```
-nohup python -u main_H1_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --output PATH_TO_OUTPUT_FOLDER --gpu_dev /gpu:N >| output_H1.log & 
+nohup python -u main_H1.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --output PATH_TO_OUTPUT_FOLDER --gpu_dev /gpu:N >| output_H1.log & 
 ```
 
 ## Test a mis-match (H0) hypothesis case
 ```
-nohup python -u main_H0_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --output PATH_TO_OUTPUT_FOLDER --gpu_dev /gpu:N >| output_H0.log & 
+nohup python -u main_H0.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --output PATH_TO_OUTPUT_FOLDER --gpu_dev /gpu:N >| output_H0.log & 
 ```
 
 ## Run both
@@ -42,7 +42,9 @@ You need to edit:
 
 Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"]()
 
-![ROC](https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/ROC.png?raw=true)
+<p align="center">
+  <img src="https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/ROC.png">
+</p>
 
 ![tables](https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/table.png?raw=true)
 
