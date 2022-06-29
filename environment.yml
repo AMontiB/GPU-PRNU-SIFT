@@ -392,7 +392,7 @@ dependencies:
   - zope.interface=5.2.0=py37h27cfd23_0
   - zstd=1.4.5=h9ceee32_0
   - pip:
-    - imageio==2.4.1
+    - imageio
     - imageio-ffmpeg==0.4.3
     - llvmlite==0.34.0
     - moviepy==1.0.3
