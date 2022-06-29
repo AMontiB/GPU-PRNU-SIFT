@@ -38,6 +38,14 @@ You need to edit:
 - ```PATH_TO_OUTPUT_FOLDER``` changing it with the path to your output folder
 - ```N``` chaging it with your GPU ID
 
+# Results of the Paper and its Tech Repo
+
+Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"]()
+
+![ROC](https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/ROC.png?raw=true)
+
+![tables](https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/table.png?raw=true)
+
 # Cite Us
 If you use this material please cite: 
 
