@@ -20,12 +20,12 @@ Download Vision dataset [here](https://lesc.dinfo.unifi.it/en/datasets).
 
 ## Test a match (H1) hypothesis case
 ```
-nohup python -u main_H1_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --gpu_dev /gpu:N >| output_H1.log & 
+nohup python -u main_H1_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --output PATH_TO_OUTPUT_FOLDER --gpu_dev /gpu:N >| output_H1.log & 
 ```
 
 ## Test a mis-match (H0) hypothesis case
 ```
-nohup python -u main_H0_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --gpu_dev /gpu:N >| output_H0.log & 
+nohup python -u main_H0_ds.py --videos PATH_TO_VIDEOS --fingerprint PATH_TO_FINGERPRINTS --output PATH_TO_OUTPUT_FOLDER --gpu_dev /gpu:N >| output_H0.log & 
 ```
 
 ## Run both
@@ -35,6 +35,7 @@ Run ```bash runner.sh```
 You need to edit:
 - ```PATH_TO_VIDEOS``` changing it with the path to your dataset
 - ```PATH_TO_FINGERPRINTS``` changing it with the path to your reference camera fingerprints
+- ```PATH_TO_OUTPUT_FOLDER``` changing it with the path to your output folder
 - ```N``` chaging it with your GPU ID
 
 # Cite Us
