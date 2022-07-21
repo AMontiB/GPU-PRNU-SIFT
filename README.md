@@ -48,7 +48,7 @@ Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"](
 
 ![tables](https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/table.png?raw=true)
 
-# Cite Us
+# Cite Us (UNOFFICIAL)
 If you use this material please cite: 
 
 @inproceedings{Montibeller22GPU, \
