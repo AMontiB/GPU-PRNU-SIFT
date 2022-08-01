@@ -51,21 +51,14 @@ Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"](
 # Cite Us
 If you use this material please cite: 
 
-@misc{https://doi.org/10.48550/arxiv.2207.14507,
-  doi = {10.48550/ARXIV.2207.14507},
-  
-  url = {https://arxiv.org/abs/2207.14507},
-  
-  author = {Montibeller, Andrea and Pasquini, Cecilia and Boato, Giulia and Dell'Anna, Stefano and Pérez-González, Fernando},
-  
-  keywords = {Computer Vision and Pattern Recognition (cs.CV), Multimedia (cs.MM), Image and Video Processing (eess.IV), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Electrical engineering, electronic engineering, information engineering, FOS: Electrical engineering, electronic engineering, information engineering},
-  
-  title = {GPU-accelerated SIFT-aided source identification of stabilized videos},
-  
-  publisher = {arXiv},
-  
-  year = {2022},
-  
-  copyright = {Creative Commons Attribution 4.0 International}
+@misc{https://doi.org/10.48550/arxiv.2207.14507,\
+  doi = {10.48550/ARXIV.2207.14507},\
+  url = {https://arxiv.org/abs/2207.14507},\
+  author = {Montibeller, Andrea and Pasquini, Cecilia and Boato, Giulia and Dell'Anna, Stefano and Pérez-González, Fernando},\
+  keywords = {Computer Vision and Pattern Recognition (cs.CV), Multimedia (cs.MM), Image and Video Processing (eess.IV), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Electrical engineering, electronic engineering, information engineering, FOS: Electrical engineering, electronic engineering, information engineering},\
+  title = {GPU-accelerated SIFT-aided source identification of stabilized videos},\
+  publisher = {arXiv},\
+  year = {2022},\
+  copyright = {Creative Commons Attribution 4.0 International}\
 }
 
