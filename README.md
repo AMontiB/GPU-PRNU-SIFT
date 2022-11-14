@@ -1,6 +1,6 @@
 # GPU-accelerated SIFT-aided source identification of stabilized videos
 
-This is the official code implementation of the ["ICIP 2022"](https://cmsworkshops.com/ICIP2022/papers/accepted_papers.php) paper ["GPU-accelerated SIFT-aided source identification of stabilized videos"](http://arxiv.org/abs/2207.14507)
+This is the official code implementation of the "ICIP 2022" paper ["GPU-accelerated SIFT-aided source identification of stabilized videos"](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=C0v9f-cAAAAJ&citation_for_view=C0v9f-cAAAAJ:UeHWp8X0CEIC)
 
 ## Requirements
 
@@ -40,7 +40,7 @@ You need to edit:
 
 # Results of the Paper and its Tech Repo
 
-Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"](http://arxiv.org/abs/2207.14507)
+Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=C0v9f-cAAAAJ&citation_for_view=C0v9f-cAAAAJ:UeHWp8X0CEIC)
 
 <p align="center">
   <img src="https://github.com/AMontiB/GPU-PRNU-SIFT/blob/main/figures/ROC.png">
@@ -51,14 +51,12 @@ Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"](
 # Cite Us
 If you use this material please cite: 
 
-@misc{https://doi.org/10.48550/arxiv.2207.14507, \
-  doi = {10.48550/ARXIV.2207.14507},\
-  url = {https://arxiv.org/abs/2207.14507}, \
-  author = {Montibeller, Andrea and Pasquini, Cecilia and Boato, Giulia and Dell'Anna, Stefano and Pérez-González, Fernando},\
-  keywords = {Computer Vision and Pattern Recognition (cs.CV), Multimedia (cs.MM), Image and Video Processing (eess.IV), FOS: Computer and information sciences, FOS: Computer and information sciences, FOS: Electrical engineering, electronic engineering, information engineering, FOS: Electrical engineering, electronic engineering, information engineering},\
-  title = {GPU-accelerated SIFT-aided source identification of stabilized videos},\
-  publisher = {arXiv},\
-  year = {2022},\
-  copyright = {Creative Commons Attribution 4.0 International}\
+@inproceedings{montibeller2022gpu, \
+  title={GPU-accelerated SIFT-aided source identification of stabilized videos}, \
+  author={Montibeller, Andrea and Pasquini, Cecilia and Boato, Giulia and Dell’Anna, Stefano and P{\'e}rez-Gonz{\'a}lez, Fernando}, \
+  booktitle={2022 IEEE International Conference on Image Processing (ICIP)}, \
+  pages={2616--2620}, \
+  year={2022}, \
+  organization={IEEE} \
 }
 
