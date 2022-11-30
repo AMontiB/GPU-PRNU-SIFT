@@ -38,7 +38,7 @@ You need to edit:
 - ```PATH_TO_OUTPUT_FOLDER``` changing it with the path to your output folder
 - ```N``` chaging it with your GPU ID
 
-# Results of the Paper and its Tech Repo
+# Results of the Paper
 
 Check ["GPU-accelerated SIFT-aided source identification of stabilized videos"](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=C0v9f-cAAAAJ&citation_for_view=C0v9f-cAAAAJ:UeHWp8X0CEIC)
 
