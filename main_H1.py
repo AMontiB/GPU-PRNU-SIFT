@@ -78,7 +78,8 @@ def basescale_matrix_estimator(scale_arr, bestscaling, noise_shape, K_shape):
     for i in scale_arr:
         scale = bestscaling + i
         arr_scale.append(scale)
-        ranges.append([(K_shape[0] - np.round(noise_shape[0]*scale)).astype(int), (K_shape[1] - np.round(noise_shape[1]*scale)).astype(int)])
+        ranges.append((K_shape[1] - np.round(noise_shape[0]*scale)).astype(int) * (K_shape[2] - np.round(noise_shape[1]*scale)).astype(int))
+        #ranges.append([(K_shape[0] - np.round(noise_shape[0]*scale)).astype(int), (K_shape[1] - np.round(noise_shape[1]*scale)).astype(int)])
         matrix[idx_hom, 0, 0] = 1/scale
         matrix[idx_hom, 1, 1] = 1/scale
         matrix[idx_hom, 2, 2] = 1
@@ -278,7 +279,7 @@ def scale_matrix_estimator(hom, noise_shape, centerres, step, rotation, K_shape)
     for i in scale_arr:
         scale = (1 + centerres + i)
         arr_scale.append(scale)
-        ranges.append([(K_shape[0] - np.round(noise_shape[0]/scale)).astype(int), (K_shape[1] - np.round(noise_shape[1]/scale)).astype(int)])
+        ranges.append([(K_shape[1] - np.round(noise_shape[0]/scale)).astype(int), (K_shape[2] - np.round(noise_shape[1]/scale)).astype(int)])
         matrix[idx_hom] = hom[idx_hom] + np.r_[cv2.getRotationMatrix2D((noise_shape[0] / 2, noise_shape[1] / 2), 2 * rotation, 1.0), [[0, 0, 1]]]
         matrix[idx_hom] = matrix[idx_hom] / scale
         matrix[idx_hom, 2, 2] = matrix[idx_hom, 2, 2] * scale
