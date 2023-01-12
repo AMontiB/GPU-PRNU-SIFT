@@ -171,6 +171,7 @@ def calibration_GPU(homography, noise, centerrot, centerres, step, TA, norm2, si
         XC = (crosscorr_Fingeprint_GPU(batchW[75:100], TA, norm2, size_Fingeprint))
         PCE_arr3 = parallel_PCE(XC.numpy(), len(batchW[75:100]), ranges[75:100])
         PCE_MAX_ARR = [np.max(PCE_arr), np.max(PCE_arr1), np.max(PCE_arr2), np.max(PCE_arr3)]
+        PCE_MAX_ARR = [0 if math.isnan(x) else x for x in PCE_MAX_ARR]
         idx_max = np.where(PCE_MAX_ARR==np.max(PCE_MAX_ARR))
         if idx_max[0][0] == 0:
             idx = np.where(PCE_arr==np.max(PCE_arr))
