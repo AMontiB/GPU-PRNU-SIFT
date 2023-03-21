@@ -254,7 +254,7 @@ def rotation_matrix_estimator(hom, noise_shape, centerrot, centerres, step):
     if not np.any(hom):
         hom = np.zeros([len(rotation_arr), 3, 3])
     else:
-        hom = np.matmul(hom, np.ones([len(rotation_arr), 3, 3]))
+        hom = np.repeat(hom, repeats=len(rotation_arr), axis=0)
     matrix = np.zeros([len(rotation_arr), 3, 3])
     arr_rotation = []
     for i in rotation_arr:
@@ -362,6 +362,9 @@ with tf.device(FLAGS.gpu_dev):
         elif device2 == 'D12':
                     basescaling = 2.63852
                     crop_array = [460, 1988, 275, 2989] #[off_x, size_x, off_y, size_y]
+        
+        else:
+          continue
 
         Fingerprint = K['fing']
         Fingerprint = cv2.resize(Fingerprint, (0, 0), fx=(1/basescaling), fy=(1/basescaling))
@@ -435,7 +438,7 @@ with tf.device(FLAGS.gpu_dev):
                     W_T2 = tfa.image.transform(tf.convert_to_tensor(noise, dtype=tf.float32), [1,0,0,0,1,0,0,0], 'BILINEAR', [size_fing[0], size_fing[1]])
                     time_array = []
                     XC = (crosscorr_Fingeprint_GPU((tf.expand_dims([W_T1, W_T2], axis=3)), TA_tf, norm2,
-                                               np.shape(TA_tf.numpy())))
+                                               (1,)+np.shape(tilted_array2)))
                     ranges = [[(size_fing[0] - noise.shape[0]), (size_fing[1] - noise.shape[1])], [(size_fing[0] - noise.shape[0]), (size_fing[1] - noise.shape[1])]]
                     pce_anchors = parallel_PCE(XC.numpy(), len(XC), ranges)
                     #find maximum
@@ -468,7 +471,7 @@ with tf.device(FLAGS.gpu_dev):
                             #
                             W_T = tfa.image.transform(tf.convert_to_tensor(noise, dtype=tf.float32), [1,0,0,0,1,0,0,0], 'BILINEAR', [size_fing[0], size_fing[1]])
                             XC = (crosscorr_Fingeprint_GPU((tf.expand_dims(tf.expand_dims(W_T, axis=0), axis=3)), TA_tf, norm2,
-                                                    np.shape(TA_tf.numpy())))
+                                                    (1,)+np.shape(tilted_array2)))
                             ranges = [[(size_fing[0] - noise.shape[0]), (size_fing[1] - noise.shape[1])]]
                             pceres = parallel_PCE(XC.numpy(), len(XC), ranges)
                             #
@@ -500,7 +503,7 @@ with tf.device(FLAGS.gpu_dev):
                                             p2[i, :] = trainKeypoints[matches[i].trainIdx].pt
                                         ## FAST
                                         hom, mask = cv2.findHomography(p1, p2, cv2.USAC_DEFAULT)
-                                        if hom is not None:
+                                        if hom is not None and len(no_of_matches) > 50:
                                             #
                                             hom[0, 2] = 0
                                             hom[1, 2] = 0
@@ -509,13 +512,13 @@ with tf.device(FLAGS.gpu_dev):
                                             W_corr = tfa.image.transform(tf.convert_to_tensor(noisecorr, dtype=tf.float32),
                                                          [1, 0, 0, 0, 1, 0, 0, 0], 'BILINEAR', [size_fing[0], size_fing[1]])
                                             XC = (crosscorr_Fingeprint_GPU((tf.expand_dims(tf.expand_dims(W_corr, axis=0), axis=3)), TA_tf,
-                                                           norm2, np.shape(TA_tf.numpy())))
+                                                           norm2, (1,)+np.shape(tilted_array2)))
                                             ranges = [[(size_fing[0] - noisecorr.shape[0]), (size_fing[1] - noisecorr.shape[1])]]
                                             pcecorr = parallel_PCE(XC.numpy(), len(XC), ranges)
                                             print("PCE after correction: %f" % pcecorr)
                                             if pcecorr > pceres:
                                                 start = time.time()
-                                                homography, pce, rotation, scaling = calibration_GPU(hom, noise, 0, 0, 0, TA_tf, norm2, np.shape(TA_tf), [1,0,0,0,1,0,0,0], pcecorr)
+                                                homography, pce, rotation, scaling = calibration_GPU(np.linalg.inv(hom), noise, 0, 0, 0, TA_tf, norm2, np.shape(TA_tf), [1,0,0,0,1,0,0,0], pcecorr)
                                                 pce_array.append(pce)
                                                 time_array.append(time.time() - start_run)
                                                 print('time calibration: ', time.time()-start)
@@ -524,7 +527,7 @@ with tf.device(FLAGS.gpu_dev):
                                                                   np.uint32(np.rint(resized.shape[1]/homography[0]))]).numpy()
                                             else:
                                                 start = time.time()
-                                                homography, pce, rotation, scaling = calibration_GPU(np.zeros((3,3)), noise, 0, 0, 0, TA_tf, norm2, np.shape(TA_tf), [1,0,0,0,1,0,0,0], pceres)
+                                                homography, pce, rotation, scaling = calibration_GPU(np.zeros((3,3)), noise, 0, 0, 0, TA_tf, norm2, (1,)+np.shape(tilted_array2), [1,0,0,0,1,0,0,0], pceres)
                                                 pce_array.append(pce)
                                                 time_array.append(time.time() - start_run)
                                                 print('time calibration: ', time.time()-start)
@@ -533,7 +536,7 @@ with tf.device(FLAGS.gpu_dev):
                                                               np.uint32(np.rint(resized.shape[1]/homography[0]))]).numpy()
                                         else:
                                                 start = time.time()
-                                                homography, pce, rotation, scaling = calibration_GPU(np.zeros((3,3)), noise, 0, 0, 0, TA_tf, norm2, np.shape(TA_tf), [1,0,0,0,1,0,0,0], pceres)
+                                                homography, pce, rotation, scaling = calibration_GPU(np.zeros((3,3)), noise, 0, 0, 0, TA_tf, norm2, (1,)+np.shape(tilted_array2), [1,0,0,0,1,0,0,0], pceres)
                                                 pce_array.append(pce)
                                                 time_array.append(time.time() - start_run)
                                                 print('time calibration: ', time.time()-start)
@@ -542,7 +545,7 @@ with tf.device(FLAGS.gpu_dev):
                                                               np.uint32(np.rint(resized.shape[1]/homography[0]))]).numpy()
                                 else:
                                     start = time.time()
-                                    homography, pce, rotation, scaling = calibration_GPU(np.zeros((3,3)), noise, 0, 0, 0, TA_tf, norm2, np.shape(TA_tf), [1,0,0,0,1,0,0,0], pceres)
+                                    homography, pce, rotation, scaling = calibration_GPU(np.zeros((3,3)), noise, 0, 0, 0, TA_tf, norm2, (1,)+np.shape(tilted_array2), [1,0,0,0,1,0,0,0], pceres)
                                     pce_array.append(pce)
                                     time_array.append(time.time() - start_run)
                                     print('time calibration: ', time.time()-start)
@@ -551,7 +554,7 @@ with tf.device(FLAGS.gpu_dev):
                                                           np.uint32(np.rint(resized.shape[1]/homography[0]))]).numpy()
                             else:
                                 start = time.time()
-                                homography, pce, rotation, scaling = calibration_GPU(np.zeros([3,3]), noise, 0, 0, 0, TA_tf, norm2, np.shape(TA_tf), [1,0,0,0,1,0,0,0], pceres)
+                                homography, pce, rotation, scaling = calibration_GPU(np.zeros([3,3]), noise, 0, 0, 0, TA_tf, norm2, (1,)+np.shape(tilted_array2), [1,0,0,0,1,0,0,0], pceres)
                                 pce_array.append(pce)
                                 time_array.append(time.time() - start_run)
                                 print('time calibration: ', time.time()-start)
