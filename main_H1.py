@@ -200,7 +200,7 @@ def calibration_GPU(homography, noise, centerrot, centerres, step, TA, norm2, si
         elif idx_max[0][0] == 3:
             idx = np.where(PCE_arr3==np.max(PCE_arr3))
             if np.max(PCE_arr3) > bestpce:
-                bestpce = np.max(PCE_arr1)
+                bestpce = np.max(PCE_arr3)
                 rotation = thetas[75+idx[0][0]]
                 matrix_off = matrix[75+idx[0][0]]
                 modifiedcheck = True
